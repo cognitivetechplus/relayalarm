@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>RelayAlarm-Setup</AssemblyName>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(PayloadPath)" LogicalName="Payload.zip" />
+    <EmbeddedResource Include="Install-User.ps1" LogicalName="Install-User.ps1" />
+    <EmbeddedResource Include="Uninstall-User.ps1" LogicalName="Uninstall-User.ps1" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+bin/
+obj/
+dist/
+installer/*.exe
+installer/SHA256SUMS.txt
+*.user

@@ -1,0 +1,32 @@
+Relay Alarm 1.0.0 - Windows x64
+
+Share RelayAlarm-Setup.exe with your friends. No .NET download is needed.
+
+1. Use Windows 10 version 2004 or later, or Windows 11, on an x64 PC.
+2. Read the Developer Mode agreement and check the agreement box.
+3. Click Install. If Developer Mode is off, approve the Windows administrator
+   prompt (or provide administrator credentials). Canceling stops installation.
+   The app itself is installed for your original Windows account.
+4. Open Relay Alarm from Start and allow Windows notification access.
+5. Enable Outlook notifications, minimize Outlook, and send yourself a test email.
+   Press Stop to silence the repeating alert. The next email starts it again.
+
+Keep Relay Alarm running in the tray. It does not start automatically at sign-in.
+Use Test sound to check audio. Use the tray menu to exit before updating.
+Run a newer Setup to update. Previous app files are kept until uninstall.
+Uninstall through Windows Settings > Apps > Relay Alarm. Preferences are kept.
+
+This is an unsigned development distribution. Windows may show an unknown
+publisher warning or block the download. Only run a copy from someone you trust.
+Developer Mode is needed for the app's Windows notification-listener identity.
+With your agreement and administrator approval, Setup enables Developer Mode.
+This is a system-wide setting allowing development app registration, including
+unsigned app packages. It stays enabled after failed installation or uninstall;
+you can turn it off later in Windows Developer settings. Setup does not enable
+Device Portal or Device Discovery, or install any certificates.
+A release that avoids Developer Mode requires a signed Windows app package.
+
+The app and bundled .NET runtime are installed under:
+%LOCALAPPDATA%\Programs\RelayAlarm
+Preferences: %LOCALAPPDATA%\RelayAlarm
+SHA256SUMS.txt contains the setup file's SHA-256 checksum.
