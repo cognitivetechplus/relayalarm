@@ -6,6 +6,12 @@ internal sealed class NotificationTracker
     private HashSet<string> previous = [];
     private bool initialized;
 
+    public void Reset()
+    {
+        previous.Clear();
+        initialized = false;
+    }
+
     public bool Update(IEnumerable<(string Key, bool IsOutlook)> notifications)
     {
         var current = notifications.ToArray();

@@ -1,6 +1,6 @@
 # Relay Alarm
 
-A C# / .NET 10 Windows Forms app for **New Outlook for Windows**. A new Outlook Windows notification starts a repeating sound and brings up a large **Stop** button. Stop silences the sound immediately; the next new notification starts it again. Closing the window keeps the app running in the system tray. Use the tray menu to exit.
+A C# / .NET 10 Windows Forms app for **New Outlook for Windows**. When enabled, a new Outlook Windows notification starts a repeating sound for 5, 10, or 15 minutes and brings up a large **Stop** button. Stop silences the sound immediately; the next new notification starts it again. Closing the window keeps the app running in the system tray. Use the tray menu to exit.
 
 ## Share with friends
 
@@ -29,8 +29,9 @@ After installation, use Start or `powershell -ExecutionPolicy Bypass -File .\Lau
 
 1. Enable notifications in New Outlook and Windows Settings. Outlook must produce an actual Windows notification for the app to detect it.
 2. Leave Relay Alarm running. It checks Windows notification history every second and ignores notifications already present when it connects.
-3. When a new Outlook notification arrives, the sound repeats every 2.5 seconds until you press **Stop** (also available in the tray menu).
-4. Use **Test sound** to try the repeating alert. **Choose WAV…** selects a WAV file; **Windows sound** restores the configured Windows notification sound. The sound choice is saved locally.
+3. Choose **Ring for: 5 mins, 10 mins, or 15 mins** (default: 5). When a new Outlook notification arrives, the sound repeats every 2.5 seconds until that duration expires or you press **Stop** (also available in the tray menu). Changing the duration applies to the next alarm; additional notifications do not extend an active alarm.
+4. Select **Alarm: Off** to silence the current alarm and prevent new alerts. Select **On** to resume alerts; notifications already present when you switch on are ignored. Your On/Off selection and duration are saved across restarts.
+5. Use **Test sound** while enabled to try the repeating alert with the selected duration. **Choose WAV…** selects a WAV file; **Windows sound** restores the configured Windows notification sound. The sound choice is saved locally.
 
 Windows does not expose another app's original notification audio through this listener. The app plays the Windows notification sound or your selected WAV. Long WAV files restart every 2.5 seconds; short notification sounds work best. A muted Windows sound scheme or muted output will also mute the default alert.
 
@@ -44,7 +45,7 @@ dotnet run --project .\tests\RelayAlarm.Checks.csproj
 .\dist\RelayAlarm\RelayAlarm.exe --smoke-test
 ```
 
-The smoke test creates a real window, verifies alarm/Stop state and timer shutdown without playing sound or requesting access, and writes `smoke-test.txt` beside the executable. To verify end to end, install, allow access, send yourself an email while Outlook is minimized, check the sound repeats, press Stop, then send a second email.
+The smoke test creates a real window, verifies alarm/Stop state, automatic expiry, enable/disable, all three durations, and timer shutdown without playing sound, changing preferences, or requesting access, and writes `smoke-test.txt` beside the executable. To verify end to end, install, allow access, send yourself an email while Outlook is minimized, check the sound repeats, press Stop, then send a second email.
 
 Unregister with `Uninstall.ps1`. Preferences remain in `%LOCALAPPDATA%\RelayAlarm\settings.json`.
 

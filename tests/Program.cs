@@ -12,3 +12,6 @@ Check(tracker.Update([("old-mail", true), ("new-mail", true)]), "New Outlook not
 Check(!tracker.Update([("old-mail", true), ("new-mail", true)]), "Stopped notification does not trigger again");
 Check(!tracker.Update([]), "Dismissing notifications does not trigger");
 Check(tracker.Update([("another-mail", true)]), "Next mail triggers after dismissal");
+tracker.Reset();
+Check(!tracker.Update([("arrived-while-disabled", true)]), "Re-enabling ignores notifications received while disabled");
+Check(tracker.Update([("arrived-while-disabled", true), ("after-enabling", true)]), "New notifications trigger after re-enabling");
