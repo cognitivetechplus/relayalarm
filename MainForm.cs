@@ -24,6 +24,7 @@ internal sealed class MainForm : Form
     public MainForm(bool smokeTest)
     {
         Text = "Relay Alarm";
+        Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         FormBorderStyle = FormBorderStyle.None;
         BackColor = Color.FromArgb(30, 30, 30);
         ForeColor = Color.FromArgb(230, 230, 230);
@@ -44,6 +45,10 @@ internal sealed class MainForm : Form
         header.MouseDown += DragWindow;
         caption.MouseDown += DragWindow;
         header.Controls.Add(caption);
+        var logo = new PictureBox { Image = Icon?.ToBitmap(), SizeMode = PictureBoxSizeMode.Zoom, Dock = DockStyle.Left, Width = 40, Padding = new Padding(6), AccessibleName = "Alarm Relay logo" };
+        logo.MouseDown += DragWindow;
+        logo.Disposed += (_, _) => logo.Image?.Dispose();
+        header.Controls.Add(logo);
         header.Controls.Add(minimize);
         header.Controls.Add(close);
         var title = new Label { Text = "Never miss an Outlook alert", Font = new Font("Segoe UI", 18, FontStyle.Bold), AutoSize = true, Dock = DockStyle.Fill };
@@ -82,7 +87,7 @@ internal sealed class MainForm : Form
         menu.Items.Add("Open", null, (_, _) => ShowWindow());
         menu.Items.Add("Stop", null, (_, _) => StopAlarm());
         menu.Items.Add("Exit", null, (_, _) => { quitting = true; Close(); });
-        tray = new NotifyIcon { Icon = SystemIcons.Information, Text = "Relay Alarm", Visible = true, ContextMenuStrip = menu };
+        tray = new NotifyIcon { Icon = Icon, Text = "Relay Alarm", Visible = true, ContextMenuStrip = menu };
         tray.DoubleClick += (_, _) => ShowWindow();
         stop.Click += (_, _) => StopAlarm();
         test.Click += (_, _) => StartAlarm();

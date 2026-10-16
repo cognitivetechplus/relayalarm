@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\AlarmRelay.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup><Compile Remove="tests\**\*.cs;packaging\setup\**\*.cs;installer\**\*.cs" /></ItemGroup>
 </Project>

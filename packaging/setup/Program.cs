@@ -18,7 +18,7 @@ internal static class Program
         ApplicationConfiguration.Initialize();
         using var instance = new Mutex(true, "Local\\RelayAlarm.Setup", out var first);
         if (!first) return 1;
-        using var form = new Form { Text = "Relay Alarm Setup", ClientSize = new Size(560, 435),
+        using var form = new Form { Text = "Relay Alarm Setup", Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath), ClientSize = new Size(560, 435),
             FormBorderStyle = FormBorderStyle.FixedDialog, MaximizeBox = false,
             StartPosition = FormStartPosition.CenterScreen, AutoScaleMode = AutoScaleMode.Dpi };
         var info = new Label { Left = 24, Top = 22, Width = 512, Height = 65,
